@@ -23,9 +23,22 @@ variable "prefixes" {
   default     = []
 }
 
+variable "bh_alert_channel_ids" {
+  description = "BH alert channels IDs"
+  type        = list
+  default     = []
+}
+
+variable "nbh_alert_channel_ids" {
+  description = "NBH alert channels IDs"
+  type        = list
+  default     = []
+}
+
 #
 # APP Apdex Score
 #
+
 variable "app_apdex_score_aggregation_window" {
   description = "APP Apdex Score aggregation window"
   type        = number
@@ -36,6 +49,12 @@ variable "app_apdex_score_enabled" {
   description = "Flag to enable APP Apdex Score alert condition"
   type        = bool
   default     = true
+}
+
+variable "app_apdex_score_nbh_alerts_enabled" {
+  description = "Flag to enable APP Apdex Score critals alerts on NBH channels"
+  type        = bool
+  default     = false
 }
 
 variable "app_apdex_score_evaluation_offset" {
