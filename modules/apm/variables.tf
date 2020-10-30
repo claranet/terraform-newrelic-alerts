@@ -23,9 +23,16 @@ variable "prefixes" {
   default     = []
 }
 
+variable "alert_channel_ids" {
+  description = "Alert channels IDs"
+  type        = list
+  default     = []
+}
+
 #
 # APP Apdex Score
 #
+
 variable "app_apdex_score_aggregation_window" {
   description = "APP Apdex Score aggregation window"
   type        = number
