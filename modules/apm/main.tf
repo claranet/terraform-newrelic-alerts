@@ -13,11 +13,11 @@ resource "newrelic_nrql_alert_condition" "app_apdex_score_alert" {
   description = var.app_apdex_score_message
   runbook_url = var.app_apdex_score_runbook_url
 
-  type                 = "static"
-  policy_id            = newrelic_alert_policy.main_policy.id
-  violation_time_limit = var.app_apdex_score_violation_time_limit
-  value_function       = "single_value"
-  aggregation_window   = var.app_apdex_score_aggregation_window
+  type                         = "static"
+  policy_id                    = newrelic_alert_policy.main_policy.id
+  violation_time_limit_seconds = var.app_apdex_score_violation_time_limit_seconds
+  value_function               = "single_value"
+  aggregation_window           = var.app_apdex_score_aggregation_window
 
   nrql {
     query             = <<-EOQ
