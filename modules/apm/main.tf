@@ -2,8 +2,13 @@ resource "newrelic_alert_policy" "main_policy" {
   name = "${join("", formatlist("[%s]", var.prefixes))}[${var.environment}] ${var.policy_name}"
 }
 
+resource "newrelic_alert_policy_channel" "main_policy_alert_channels" {
+  policy_id   = newrelic_alert_policy.main_policy.id
+  channel_ids = var.alert_channel_ids
+}
+
 resource "newrelic_nrql_alert_condition" "app_apdex_score_alert" {
-  count       = var.app_apdex_score_enabled == true ? 1 : 0
+  count       = var.app_apdex_score_enabled ? 1 : 0
   name        = "${join("", formatlist("[%s]", var.prefixes))}[${var.environment}] ${var.app_apdex_score_message}"
   description = var.app_apdex_score_message
   runbook_url = var.app_apdex_score_runbook_url
@@ -35,4 +40,3 @@ EOQ
     threshold_occurrences = "ALL"
   }
 }
-

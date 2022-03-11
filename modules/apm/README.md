@@ -9,10 +9,44 @@ provider "newrelic" {
   region        = "US"  # or EU
 }
 
-module "newrelic_alerts" {
+resource "newrelic_alert_channel" "pagerduty_bh" {
+  name = "PagerDuty BH"
+  type = "pagerduty"
+
+  config {
+    service_key = "xxx"
+  }
+}
+
+resource "newrelic_alert_channel" "pagerduty_nbh" {
+  name = "PagerDuty NBH"
+  type = "pagerduty"
+
+  config {
+    service_key = "xxx"
+  }
+}
+
+module "newrelic_alerts_webfront_bh" {
   source      = "github.com/claranet/terraform-newrelic-alerts//modules/apm"
   environment = "production"
-  policy_name = "APM anomalies detected"
+  policy_name = "APM anomalies detected (BH)"
+
+  alert_channel_ids = [newrelic_alert_channel.pagerduty_bh.id]
+
+  app_apdex_score_threshold_duration_critical = 300
+  app_apdex_score_threshold_critical          = 0.85
+}
+
+module "newrelic_alerts_webfront_nbh" {
+  source      = "github.com/claranet/terraform-newrelic-alerts//modules/apm"
+  environment = "production"
+  policy_name = "APM anomalies detected (NBH)"
+
+  alert_channel_ids = [newrelic_alert_channel.pagerduty_nbh.id]
+
+  app_apdex_score_threshold_duration_critical = 600
+  app_apdex_score_threshold_critical          = 0.7
 }
 ```
 
@@ -27,6 +61,7 @@ module "newrelic_alerts" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| alert\_channel\_ids | Alert channels IDs | `list` | `[]` | no |
 | app\_apdex\_score\_aggregation\_window | APP Apdex Score aggregation window | `number` | `60` | no |
 | app\_apdex\_score\_enabled | Flag to enable APP Apdex Score alert condition | `bool` | `true` | no |
 | app\_apdex\_score\_evaluation\_offset | APP Apdex Score evaluation offset | `number` | `3` | no |
@@ -47,7 +82,7 @@ module "newrelic_alerts" {
 
 | Name | Description |
 |------|-------------|
+| alert\_policy | alert policy |
 | app\_apdex\_score\_alert | app apdex score alert |
 | appname\_like | n/a |
-| main\_alert\_policy | main alert policy |
 

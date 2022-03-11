@@ -2,8 +2,8 @@ output "appname_like" {
   value = local.appname_like
 }
 
-output "main_alert_policy" {
-  description = "main alert policy"
+output "alert_policy" {
+  description = "alert policy"
   value       = newrelic_alert_policy.main_policy
 }
 
