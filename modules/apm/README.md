@@ -50,12 +50,27 @@ module "newrelic_alerts_webfront_nbh" {
 }
 ```
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
 | terraform | >= 0.12.26 |
 | newrelic | >= 2.11.0 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| newrelic | >= 2.11.0 |
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [newrelic_alert_policy.main_policy](https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/resources/alert_policy) | resource |
+| [newrelic_alert_policy_channel.main_policy_alert_channels](https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/resources/alert_policy_channel) | resource |
+| [newrelic_nrql_alert_condition.app_apdex_score_alert](https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/resources/nrql_alert_condition) | resource |
 
 ## Inputs
 
@@ -85,3 +100,4 @@ module "newrelic_alerts_webfront_nbh" {
 | alert\_policy | alert policy |
 | app\_apdex\_score\_alert | app apdex score alert |
 | appname\_like | n/a |
+<!-- END_TF_DOCS -->
