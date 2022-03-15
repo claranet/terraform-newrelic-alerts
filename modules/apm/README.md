@@ -72,7 +72,7 @@ module "newrelic_alerts_webfront_nbh" {
 | app\_apdex\_score\_threshold\_duration\_critical | APP Apdex Score critical threshold duration | `number` | `300` | no |
 | app\_apdex\_score\_threshold\_duration\_warning | APP Apdex Score warning threshold duration | `number` | `600` | no |
 | app\_apdex\_score\_threshold\_warning | APP Apdex Score warning threshold | `number` | `0.85` | no |
-| app\_apdex\_score\_violation\_time\_limit | APP Apdex Score violation time limit | `string` | `"one_hour"` | no |
+| app\_apdex\_score\_violation\_time\_limit_seconds | APP Apdex Score violation time limit seconds | `number` | `3600` | no |
 | appname\_like | Query match appname | `string` | `""` | no |
 | environment | Application environment | `string` | n/a | yes |
 | policy\_name | Alert policy name | `string` | n/a | yes |

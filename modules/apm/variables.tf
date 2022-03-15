@@ -93,8 +93,8 @@ variable "app_apdex_score_threshold_warning" {
   default     = 0.85
 }
 
-variable "app_apdex_score_violation_time_limit" {
-  description = "APP Apdex Score violation time limit"
-  type        = string
-  default     = "one_hour"
+variable "app_apdex_score_violation_time_limit_seconds" {
+  description = "APP Apdex Score violation time limit seconds"
+  type        = number
+  default     = 3600
 }
