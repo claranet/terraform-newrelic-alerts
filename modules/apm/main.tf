@@ -16,14 +16,14 @@ resource "newrelic_nrql_alert_condition" "app_apdex_score_alert" {
   type                         = "static"
   policy_id                    = newrelic_alert_policy.main_policy.id
   violation_time_limit_seconds = var.app_apdex_score_violation_time_limit_seconds
-  value_function               = "single_value"
   aggregation_window           = var.app_apdex_score_aggregation_window
+  aggregation_method           = "event_flow"
+  aggregation_delay            = var.app_apdex_score_evaluation_delay_seconds
 
   nrql {
-    query             = <<-EOQ
+    query = <<-EOQ
       SELECT apdex(duration, t:${var.app_apdex_score_t_threshold}) FROM Transaction WHERE appName like '${local.appname_like}'
 EOQ
-    evaluation_offset = var.app_apdex_score_evaluation_offset
   }
 
   critical {

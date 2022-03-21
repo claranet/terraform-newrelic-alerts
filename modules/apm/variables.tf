@@ -19,13 +19,13 @@ variable "policy_name" {
 
 variable "prefixes" {
   description = "Prefixes list to prepend between brackets on every monitors names before environment"
-  type        = list
+  type        = list(string)
   default     = []
 }
 
 variable "alert_channel_ids" {
   description = "Alert channels IDs"
-  type        = list
+  type        = list(string)
   default     = []
 }
 
@@ -45,10 +45,10 @@ variable "app_apdex_score_enabled" {
   default     = true
 }
 
-variable "app_apdex_score_evaluation_offset" {
-  description = "APP Apdex Score evaluation offset"
+variable "app_apdex_score_evaluation_delay_seconds" {
+  description = "APP Apdex Score evaluation delay in seconds"
   type        = number
-  default     = 3
+  default     = 180
 }
 
 variable "app_apdex_score_message" {
