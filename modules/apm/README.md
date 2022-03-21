@@ -56,13 +56,13 @@ module "newrelic_alerts_webfront_nbh" {
 | Name | Version |
 |------|---------|
 | terraform | >= 0.12.26 |
-| newrelic | >= 2.11.0 |
+| newrelic | >= 2.39.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| newrelic | >= 2.11.0 |
+| newrelic | >= 2.39.0 |
 
 ## Resources
 
